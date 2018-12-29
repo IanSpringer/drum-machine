@@ -5,6 +5,7 @@ class DrumMachine extends Component {
   constructor(props) {
     super(props);
     this.buildDrumOptions = this.buildDrumOptions.bind(this);
+    this.buildAudioOptions = this.buildAudioOptions.bind(this);
     this.buildKit = this.buildKit.bind(this);
   }
 
@@ -18,9 +19,13 @@ class DrumMachine extends Component {
     return drumOptions;
   }
 
+  buildAudioOptions(e) {
+    let selectedOption = this.buildOptions.filter(option => option)
+  }
+
   buildKit() {
-    const buttonList = this.buildDrumOptions().map(object =>  {
-      return <Drum type={object.type}/>
+    const buttonList = this.buildDrumOptions().map((object, key) =>  {
+      return <Drum type={object.type} file={object.file} key={key} click={this.buildAudioOptions}/>
     });
 
     return buttonList;
