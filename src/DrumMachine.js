@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import Drum from './Drum';
+import snare from './sounds/new-snare.mp3';
+import crash from './sounds/new-crash.mp3';
+import kick from './sounds/new-kick.mp3';
+import snare2 from './sounds/snare1.wav';
+import './styles/DrumMachine.css'
 
 class DrumMachine extends Component {
   constructor(props) {
@@ -11,9 +16,10 @@ class DrumMachine extends Component {
 
   buildDrumOptions() {
     const drumOptions = [
-      {type: 'hi-hat', file: '../sounds/hat1.aif'},
-      {type: 'clap', file: '../sounds/clap1.aif'},
-      {type: 'snare', file: '../sounds/snare1.aif'},
+      {type: 'crash', file: crash},
+      {type: 'kick', file: kick},
+      {type: 'snare', file: snare},
+      {type: 'snare-2', file: snare2}
     ];
 
     return drumOptions;
@@ -25,7 +31,7 @@ class DrumMachine extends Component {
 
   buildKit() {
     const buttonList = this.buildDrumOptions().map((object, key) =>  {
-      return <Drum type={object.type} file={object.file} key={key} click={this.buildAudioOptions}/>
+      return <Drum buttonClassName="drum__button" audioClassName="drum__audio" type={object.type} file={object.file} key={key} click={this.buildAudioOptions}/>
     });
 
     return buttonList;
@@ -33,7 +39,7 @@ class DrumMachine extends Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.className}>
         {this.buildKit()}
       </div>
     )

@@ -1,0 +1,17 @@
+.drum__button {
+  width: 40px;
+  height: 40px;
+  background: #9EEFE5;
+  border-radius: 4px;
+  opacity: .3;
+  transition: opacity .16s ease;
+  border: 0;
+}
+
+.drum__button.is-active {
+  opacity: 1;
+}
+
+.drum__audio {
+  display: none;
+}
