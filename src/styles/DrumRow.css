@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "rochester";
+  src: url(../fonts/Rochester.ttf) format("truetype"),
+}
+
+.drum-row__label {
+  font-family: "rochester";
+  color: white;
+  width: 60px;
+}
+
+.drum-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

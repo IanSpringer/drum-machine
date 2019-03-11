@@ -1,39 +1,34 @@
 import React, {Component} from 'react';
+import Drum from './Drum';
+import './styles/DrumRow.css'
+
 
 class DrumRow extends Component {
-  constructor(super) {
+  constructor(props) {
     super(props);
-    this.buildDrumOptions = this.buildDrumOptions.bind(this)
+    this.buildRow = this.buildRow.bind(this);
+    this.state = {
+      placeArray: Array(16).fill()
+    }
+  }
+
+  buildRow() {
+    const placeArray = this.state.placeArray.map((button, index) => {
+      return <Drum buttonClassName="drum__button" audioClassName="drum__audio" type={this.props.type} file={this.props.file} indexKey={index} />
+    })
+
+    return placeArray;
+  }
+
+  render() {
+    return (
+      <div className="drum-row">
+        <p class="drum-row__label">{this.props.type}</p>
+        {this.buildRow()}
+      </div>
+    )
   }
 }
 
-buildDrumOptions() {
-  const drumOptions = [
-    {type: 'crash', file: crash},
-    {type: 'kick', file: kick},
-    {type: 'snare', file: snare},
-    {type: 'snare-2', file: snare2}
-  ];
-
-  return drumOptions;
-}
-
-buildKit() {
-  const buttonList = this.buildDrumOptions().map((object, key) =>  {
-    Array(16).fill().map(button => {
-      return <Drum buttonClassName="drum__button" audioClassName="drum__audio" type={object.type} file={object.file} key={key} click={this.buildAudioOptions}/>
-    })
-  });
-
-  return buttonList;
-}
-
-render() {
-  return (
-    <div className="drum-row">
-      {this.buildKit()}
-    </div>
-  )
-}
 
 export default DrumRow;

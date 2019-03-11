@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Drum from './Drum';
+import DrumRow from './DrumRow';
 import snare from './sounds/new-snare.mp3';
 import crash from './sounds/new-crash.mp3';
 import kick from './sounds/new-kick.mp3';
@@ -30,8 +31,8 @@ class DrumMachine extends Component {
   }
 
   buildKit() {
-    const buttonList = this.buildDrumOptions().map((object, key) =>  {
-      return <Drum buttonClassName="drum__button" audioClassName="drum__audio" type={object.type} file={object.file} key={key} click={this.buildAudioOptions}/>
+    const buttonList = this.buildDrumOptions().map((object, index) =>  {
+      return <DrumRow buttonClassName="drum__row" type={object.type} file={object.file} index={index} click={this.buildAudioOptions}/>
     });
 
     return buttonList;

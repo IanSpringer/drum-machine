@@ -11,18 +11,24 @@ class Drum extends Component {
     }
   }
 
+  drumHit(e) {
+    this.setState({clicked:true})
+    e.currentTarget.nextSibling.play(e);
+  }
+
+
+
   clickFunction(e) {
-    const target = e.currentTarget.nextSibling;
-    target.play();
-    console.log(e.currentTarget.nextSibling)
+    this.state.clicked === false ? this.drumHit(e) : this.setState({clicked:false})
   }
   render() {
     const drumType = this.props.type;
     const drumFile = this.props.file;
+    const buttonClasses = `${this.props.buttonClassName} drum-clicked--${this.state.clicked}`
     return (
       <div>
-        <button className={this.props.buttonClassName} data-type={drumType} onClick={this.clickFunction}></button>
-        <audio controls="controls" className={this.props.audioClassName}>
+        <button className={buttonClasses} data-type={drumType} onClick={this.clickFunction}></button>
+        <audio controls="controls" className="drum__audio">
           <source src={drumFile} type="audio/mpeg" />
           <source src={drumFile} type="audio/wav" />
             Your browser does not support the audio tag.

@@ -1,17 +1,20 @@
 .drum__button {
   width: 40px;
   height: 40px;
-  background: #9EEFE5;
   border-radius: 4px;
-  opacity: .3;
-  transition: opacity .16s ease;
+  transition: background-color .16s ease;
   border: 0;
+  background-color:   #9400D3;
+  outline: none;
 }
 
 .drum__button.is-active {
-  opacity: 1;
 }
 
 .drum__audio {
   display: none;
+}
+
+.drum-clicked--true {
+  background-color:   #FF00FF;
 }
