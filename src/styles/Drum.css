@@ -6,6 +6,8 @@
   border: 0;
   background-color:   #9400D3;
   outline: none;
+  margin-bottom: 10px;
+  opacity: .9;
 }
 
 .drum__button.is-active {
