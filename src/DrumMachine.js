@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Drum from './Drum';
-import DrumRow from './DrumRow';
+import SixteenthNote from './SixteenthNote';
+import SoundLabel from './SoundLabel';
+import Audio from './Audio';
 import snare from './sounds/new-snare.mp3';
 import crash from './sounds/new-crash.mp3';
 import kick from './sounds/new-kick.mp3';
@@ -10,38 +12,57 @@ import './styles/DrumMachine.css'
 class DrumMachine extends Component {
   constructor(props) {
     super(props);
-    this.buildDrumOptions = this.buildDrumOptions.bind(this);
-    this.buildAudioOptions = this.buildAudioOptions.bind(this);
-    this.buildKit = this.buildKit.bind(this);
+    this.buildKit = this.buildColumns.bind(this);
+    this.buildLabels = this.buildLabels.bind(this);
+    this.buildAudio = this.buildAudio.bind(this);
+    this.state = {
+      placeArray: Array(16).fill(),
+      drumOptions: [
+        {type: 'crash', file: crash, title: 'Crash'},
+        {type: 'kick', file: kick, title: 'Kick'},
+        {type: 'snare', file: snare, title: 'Snare'},
+        {type: 'snare-2', file: snare2, title: 'Snare'}
+      ]
+    }
   }
 
-  buildDrumOptions() {
-    const drumOptions = [
-      {type: 'crash', file: crash},
-      {type: 'kick', file: kick},
-      {type: 'snare', file: snare},
-      {type: 'snare-2', file: snare2}
-    ];
+  buildLabels() {
+    const labelList = this.state.drumOptions.map((sound, index) => {
+      return <SoundLabel title={sound.title} className="drum__label" key={index} />
+    })
 
-    return drumOptions;
+    return labelList;
   }
 
-  buildAudioOptions(e) {
-    let selectedOption = this.buildOptions.filter(option => option)
-  }
-
-  buildKit() {
-    const buttonList = this.buildDrumOptions().map((object, index) =>  {
-      return <DrumRow buttonClassName="drum__row" type={object.type} file={object.file} index={index} click={this.buildAudioOptions}/>
+  buildColumns() {
+    const buttonList = this.state.placeArray.map((object, index) =>  {
+      return <SixteenthNote columnClassName="drum__column" key={index} drumOptions={this.state.drumOptions}/>
     });
-
     return buttonList;
+  }
+
+  buildAudio() {
+    const audioList = this.state.drumOptions.map((audio, index) => {
+      return <Audio source={audio.file} drum={audio.type} key={index}/>
+    })
+
+    return audioList;
   }
 
   render() {
     return (
-      <div className={this.props.className}>
-        {this.buildKit()}
+      <div>
+        <div className={this.props.className}>
+          <div className="label-wrapper">
+            {this.buildLabels()}
+          </div>
+          <div className="drum-wrapper">
+            {this.buildColumns()}
+          </div>
+        </div>
+        <div className="audio-wrapper">
+          {this.buildAudio()}
+        </div>
       </div>
     )
   }

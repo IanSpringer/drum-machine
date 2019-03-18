@@ -1,0 +1,11 @@
+.drum__label {
+	display: block;
+	color: white;
+}
+
+.label-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-right: 20px;
+}
