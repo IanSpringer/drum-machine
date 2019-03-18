@@ -7,7 +7,7 @@
 <ul>
     <li>Clone the repo</li>
     <li>Install NPM and Yarn</li>
-    <il>Run `yarn start`</il>
+    <li>Run `yarn start`</li>
 </ul>
 
 
