@@ -12,8 +12,8 @@ class Drum extends Component {
   }
 
   drumHit(e) {
+    document.querySelector(`.audio[data-drum=${this.props.type}]`).play();
     this.setState({clicked:true});
-    console.log(this.props.type);
   }
 
   clickFunction(e) {
@@ -25,7 +25,7 @@ class Drum extends Component {
     const drumFile = this.props.file;
     const buttonClasses = `${this.props.buttonClassName} drum-clicked--${this.state.clicked}`
     return (
-      <div>
+      <div onClick={this.props.onClick}>
         <button className={buttonClasses} data-type={drumType} onClick={this.clickFunction}></button>
       </div>
     )

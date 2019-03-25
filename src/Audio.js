@@ -8,7 +8,7 @@ class Audio extends Component {
 
   render() {
     return(
-      <audio controls data-drum={this.props.type}>
+      <audio controls data-drum={this.props.drum} className="audio">
         <source src={this.props.source} type="audio/mp3" />
         <source src={this.props.source} type="audio/aif" />
       </audio>
